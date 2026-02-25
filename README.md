@@ -31,6 +31,35 @@
   - wird zwischendurch ein anderer Mr. X gefangen, reduziert sich die Schonfrist auf *B* Minuten
 - Mr. X wird vor einem Fänger in Sichtweite nicht wegrennen/in ein Verkehrsmittel einsteigen und flüchten
 
+## Eingabe, Datenlayout und Algorithmus
+
+### Eingabe einer Verbindung
+**TODO**
+
+### Datenlayout
+Ein Network enthält eine Liste aller Knoten (hier: `stations`) und eine Liste der Verbindungen (hier: `edges`).
+Über die `adjacency` Liste ist ein Zugriff auf benachbarte bzw. in einem Schritt erreichbare Knoten einfach abbildbar.
+Die `station_lookup` Tabelle wird verwendet, um Name einer Station und dazugehörige Id zu verknüpfen.
+```rust
+pub struct Network {
+    pub stations: Vec<Station>,
+    pub edges: Vec<Edge>,
+    pub adjacency: Vec<Vec<StationId>>,
+    pub station_lookup: HashMap<String, StationId>,
+}
+```
+
+Eine Verbindung (hier: `Edge`) kennt stets die Id des Startknotens und die Id des Zielknotens (`StationId` `from` und `to`).
+Name der dazugehörigen Linie (hier: `line`) und Art der Verbindung (Bahn, Bus oder Fähre) sind ebenfalls bekannt.
+```rust
+pub struct Edge {
+    pub from: StationId,
+    pub to: StationId,
+    pub line: String,
+    pub transport: Transport,
+}
+```
+
 ## Usage and build instructions
 ![Platform Darwin](https://img.shields.io/badge/platform-macOS-orange.svg)
 ![Platform Windows](https://img.shields.io/badge/platform-Windows-orange.svg)
