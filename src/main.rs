@@ -4,6 +4,7 @@ use crate::network::network::Network;
 
 pub mod network;
 pub mod solver;
+pub mod test;
 
 fn main() {
     let network_json = include_str!("../data/Minimal28U1U3Network.json");
