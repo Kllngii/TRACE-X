@@ -126,7 +126,7 @@ pub struct Edge {
 ### Eingabe einer Standortmeldung
 Standortmeldungen werden alle *K* Minuten abgegeben und liegen in folgendem Format vor:
 ```regex
-\`d{2}:\d{2}/Mr.X\d/[\w\s-]+/[\w]+/[\w\s-]+
+\`d{2}:\d{2}/Mr.X\d/[\w\s-]+/[\w\s-]+/[\w\s-]+
 ```
 Eine Standortmeldung von Mr. X Nummer 1 um 10:00 könnte also so aussehen.
 ```text
