@@ -4,6 +4,7 @@ use crate::network::network::Network;
 
 pub mod network;
 pub mod solver;
+#[cfg(test)]
 pub mod test;
 
 fn main() {
