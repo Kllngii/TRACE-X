@@ -1,0 +1,10 @@
+{
+  "r_x_count": 5,
+  "station_limit_train": 5,
+  "station_limit_bus": 8,
+  "station_limit_ferry": 5,
+  "direction_change_between_calls_permitted": false,
+  "minutes_between_calls": 15,
+  "minutes_before_recatch": 60,
+  "minutes_before_recatch_with_other_catch_between": 30
+}

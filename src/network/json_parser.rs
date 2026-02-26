@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use crate::network::model::{Network, Transport};
+use crate::network::network::{Network, Transport};
 
 #[derive(Deserialize)]
 struct JsonNetworkInput {
