@@ -67,6 +67,7 @@ pub struct Edge {
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Apache-2.0 License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)
 
-![Version](https://img.shields.io/badge/version-0.0.1-yellow.svg)
+![Version](https://img.shields.io/badge/version-0.1.0-yellow.svg)
+[![dependency status](https://deps.rs/repo/github/kllngii/TRACE-X/status.svg?path=%2F)](https://deps.rs/repo/github/kllngii/TRACE-X?path=%2F)
 
 **TODO**
