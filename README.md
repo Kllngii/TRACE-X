@@ -123,6 +123,24 @@ pub struct Edge {
 }
 ```
 
+### Eingabe einer Standortmeldung
+Standortmeldungen werden alle *K* Minuten abgegeben und liegen in folgendem Format vor:
+```regex
+\`d{2}:\d{2}/Mr.X\d/[\w\s-]+/[\w]+/[\w\s-]+
+```
+Eine Standortmeldung von Mr. X Nummer 1 um 10:00 könnte also so aussehen.
+```text
+10:00/Mr.X1/Wandsbek-Gartenstadt/U1/Norderstedt Mitte
+```
+Hierbei ist die erste angegebene Station der aktuelle Standort gefolgt von verwendeter Linie und Fahrtrichtung/Endhaltestelle der Linie.
+Unter Umständen kann sich ein Mr. X zum Zeitpunkt der Standortmeldung auch in keinem Verkehrsmittel befinden, dann bleiben die letzten beiden Felder frei:
+```text
+11:00/Mr.X2/Dammtor/ /
+11:00/Mr.X3/Stadthausbrücke/-/-
+```
+### Algorithmus
+**TODO**
+
 ## Usage and build instructions
 ![Platform Darwin](https://img.shields.io/badge/platform-macOS-orange.svg)
 ![Platform Windows](https://img.shields.io/badge/platform-Windows-orange.svg)
