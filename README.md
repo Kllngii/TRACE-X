@@ -34,7 +34,66 @@
 ## Eingabe, Datenlayout und Algorithmus
 
 ### Eingabe einer Verbindung
+Ein Netzwerk hart zu kodieren ist nicht sinnvoll, deshalb enthält das `network`-module `Parser`, um Netzwerke aus einer externen Datei einzulesen.
+
+#### JSON-Parser
+Die JSON (**J**ava**S**cript **O**bject **N**otation) ist eine kompakte und leicht lesbare Notation für den Datenaustausch zwischen Anwendungen und eignet sich somit sehr gut zur Angabe kleinerer Netzwerke zu Testzwecken.
+
+Der Einfachkeit halber wurde festgelegt, dass jede per JSON-Parser eingelesene Verbindung stets eine Gegenrichtung besitzt.
+Gibt es auf der Linie 1 eine Verbindung von Station A zur benachbarten Station B, ist es ebenfalls möglich die Gegenrichtung von Station B nach Station A ohne Zwischenstopp zu fahren.
+Für Menschen mag das selbstverständlich wirken, der Algorithmus wird aber mit gerichteten Kanten (directed edges) arbeiten und muss explizit beide Fahrtrichtungen angegeben bekommen.
+
+Ebenfalls festgelegt wurde, dass die Daten des Netzwerks linienbasiert und nicht stationsbasiert eingelesen werden, obwohl der stationsbasierte Ansatz eine größere Ähnlichkeit von JSON und Netzwerk zur Folge hätte.
+Bei größeren Netzwerken mit mehreren Linien spart der linienbasierte Ansatz ganz einfach Schreibarbeit und ist ebenfalls besser für Menschen mit einem Fahrplan auf Vollständigkeit und Richtigkeit zu prüfen.
+
+##### Aufbau eines Line-Objekts
+Das Parsen wird von dem Rust-crate `serde` und der dazugehörigen `serde_json` Erweiterung übernommen.
+
+```rust
+#[derive(Deserialize)]
+struct JsonLineInput {
+    name: String,
+    transport: String,
+    stations: Vec<String>,
+}
+```
+Beispielhaft für vier benachbarte Stationen der Hamburger Bahnlinie U1 könnte das so aussehen:
+```json
+{
+  "name": "U1",
+  "transport": "bahn",
+  "stations": [
+    "Wandsbek-Gartenstadt",
+    "Alter Teichweg",
+    "Straßburger Straße",
+    "Wandsbek Markt"
+  ]
+}
+```
+
+##### Aufbau des JSON-Objekts
+Rust-seitig ist die Gesamtstruktur nichts weiter als eine Liste der zuvor definierten Linien.
+```rust
+#[derive(Deserialize)]
+struct JsonNetworkInput {
+    lines: Vec<JsonLineInput>,
+}
+```
+Eine vollständige JSON-Datei könnte so aussehen, der `lines`-Array enthält hierbei nach dem oben genannten Schema definierte Linien.
+```json
+{
+  "lines":[]
+}
+```
+
+#### GTFS-Parser
+GTFS (**G**eneral **T**ransit **F**eed **S**pecification) ist ein Standardformat für den Austausch von Fahrplandaten inlusive Abfahrtszeiten, Namen und Standorten der einzelnen Haltestellen.
+Ein Beispieldatensatz für Hamburg ist im Transparenzportal der Stadt Hamburg (https://suche.transparenz.hamburg.de/dataset/hvv-fahrplandaten-gtfs-januar-2025-bis-dezember-2025) zu finden.
+
+Stand jetzt ist der GTFS-Parser noch nicht implementiert.
+
 **TODO**
+
 
 ### Datenlayout
 Ein Network enthält eine Liste aller Knoten (hier: `stations`), der Linien (hier: `lines`) und eine Liste der Verbindungen (hier: `edges`).
