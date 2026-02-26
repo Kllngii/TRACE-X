@@ -55,6 +55,7 @@ pub struct Network {
 Eine Verbindung (hier: `Edge`) kennt stets die Id des Startknotens und die Id des Zielknotens (`StationId` `from` und `to`).
 Name der dazugehörigen Linie (hier: `line`) und Art der Verbindung (Bahn, Bus oder Fähre) sind ebenfalls bekannt.
 ```rust
+#[derive(Debug)]
 pub struct Edge {
     pub from: StationId,
     pub to: StationId,
