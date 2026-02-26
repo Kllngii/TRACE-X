@@ -1,0 +1,36 @@
+{
+  "lines": [
+    {
+      "name": "U1",
+      "transport": "bahn",
+      "stations": [
+        "Wandsbek-Gartenstadt",
+        "Alter Teichweg",
+        "Straßburger Straße",
+        "Wandsbek Markt"
+      ]
+    },
+    {
+      "name": "U3",
+      "transport": "bahn",
+      "stations": [
+        "Wandsbek-Gartenstadt",
+        "Habichtstraße",
+        "Barmbek"
+      ]
+    },
+    {
+      "name": "28",
+      "transport": "bahn",
+      "stations": [
+        "Wandsbek Markt",
+        "Straßburger Straße",
+        "Alter Teichweg",
+        "Lämmersieth (Nord)",
+        "Habichtstr. (Mitte)",
+        "Habichtstraße",
+        "Habichtsplatz"
+      ]
+    }
+  ]
+}
