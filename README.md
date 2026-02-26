@@ -37,15 +37,18 @@
 **TODO**
 
 ### Datenlayout
-Ein Network enthält eine Liste aller Knoten (hier: `stations`) und eine Liste der Verbindungen (hier: `edges`).
+Ein Network enthält eine Liste aller Knoten (hier: `stations`), der Linien (hier: `lines`) und eine Liste der Verbindungen (hier: `edges`).
 Über die `adjacency` Liste ist ein Zugriff auf benachbarte bzw. in einem Schritt erreichbare Knoten einfach abbildbar.
-Die `station_lookup` Tabelle wird verwendet, um Name einer Station und dazugehörige Id zu verknüpfen.
+Die `_lookup` Tabellen werden verwendet, um Name und dazugehörige Id zu verknüpfen.
 ```rust
+#[derive(Debug)]
 pub struct Network {
     pub stations: Vec<Station>,
+    pub lines: Vec<Line>,
     pub edges: Vec<Edge>,
     pub adjacency: Vec<Vec<StationId>>,
     pub station_lookup: HashMap<String, StationId>,
+    pub line_lookup: HashMap<String, LineId>,
 }
 ```
 
@@ -55,7 +58,7 @@ Name der dazugehörigen Linie (hier: `line`) und Art der Verbindung (Bahn, Bus o
 pub struct Edge {
     pub from: StationId,
     pub to: StationId,
-    pub line: String,
+    pub line: LineId,
     pub transport: Transport,
 }
 ```
