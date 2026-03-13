@@ -1,9 +1,10 @@
+use std::cmp::PartialEq;
 use std::collections::HashMap;
 
-#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash, Ord, PartialOrd)]
 pub struct StationId(pub usize);
 
-#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash, Ord, PartialOrd)]
 pub struct LineId(pub usize);
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -112,18 +113,23 @@ impl Network {
         self.adjacency[from_id.0].push(to_id);
     }
 }
+impl PartialEq<StationId> for &StationId {
+    fn eq(&self, other: &StationId) -> bool {
+        self == other
+    }
+}
+
+impl PartialEq<LineId> for &LineId {
+    fn eq(&self, other: &LineId) -> bool {
+        self == other
+    }
+}
 
 impl Network {
-    pub fn station_id_to_string(&self, id: StationId) -> String {
-        match self.station_lookup.iter().find_map(|(station_name, &station_id)| if id == station_id {Some(station_name)} else {None}) {
-            Some(station_name) => station_name.to_string(),
-            None => "STATION LOOKUP-ERROR".to_string()
-        }
+    pub fn station_id_to_string(&self, id: &StationId) -> String {
+        (&self.stations[id.0].name).into()
     }
-    pub fn line_id_to_string(&self, id: LineId) -> String {
-        match self.line_lookup.iter().find_map(|(line_name, &line_id)| if id == line_id {Some(line_name)} else {None}) {
-            Some(line_name) => line_name.to_string(),
-            None => "LINE LOOKUP-ERROR".to_string()
-        }
+    pub fn line_id_to_string(&self, id: &LineId) -> String {
+        (&self.lines[id.0].name).into()
     }
 }

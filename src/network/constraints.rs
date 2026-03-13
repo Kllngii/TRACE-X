@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use crate::network::network::Transport;
 
 #[derive(Deserialize, Debug, Copy, Clone)]
 pub struct NetworkConstraints {
@@ -10,4 +11,14 @@ pub struct NetworkConstraints {
     pub minutes_between_calls: u16, //A - Anzahl Minuten zwischen zwei Standortmeldungen
     pub minutes_before_recatch: u16, //B - Anzahl Minuten bis ein gefangener Mr. X erneut gefangen werden kann
     pub minutes_before_recatch_with_other_catch_between: u16, //K - Anzahl Minuten bis ein gefangener Mr. X erneut gefangen werden kann, wenn ein anderer Mr. X zwischendurch gefangen
+}
+
+impl NetworkConstraints {
+    pub fn get_limit_by_transport(&self, t: Transport) -> u16 {
+        match t {
+            Transport::Bahn => self.station_limit_train,
+            Transport::Bus => self.station_limit_bus,
+            Transport::Faehre => self.station_limit_ferry,
+        }
+    }
 }
